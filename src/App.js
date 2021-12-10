@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react"
+import axios from "axios"
+import Header from "./components/Header";
+import List from "./components/List";
+
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      leituras: [],
+    }
+    this.fetchData = this.fetchData.bind(this);
+
+  }
+  async fetchData() {
+    axios.get('https://hn.algolia.com/api/v1/search?query=chave')
+      .then(response => {
+        const data = response.data.hits
+        this.setState({ leituras: data })
+
+      })
+  }
+
+  async componentDidMount() {
+    this.fetchData('');
+  }
+
+  render() {
+    const { leituras } = this.state
+    return (
+      <>
+        <Header title="modulo 1 - exercio 2" />
+        <List leituras={leituras}></List>
+      </>
+    )
+  }
 }
-
-export default App;
