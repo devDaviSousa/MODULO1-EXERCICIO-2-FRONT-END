@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "./styles";
 
 
 export default class List extends React.Component {
@@ -7,22 +8,21 @@ export default class List extends React.Component {
     const { leituras } = this.props;
 
     return (
-      <div>
+      <Container>
         {
           leituras.map((item, index) => (
             <div key={index}>
-              <h3> {item.author}</h3>
+              <h2> {item.author}</h2>
               <p> {item.title}</p>
-              <a href={item.url}> {item.url}</a>
+              <button>
+                <a href={item.url}> Ler</a>
+              </button>
             </div>
           ))
         }
-      </div>
-
+      </Container>
 
     )
-
-
   }
 
 }

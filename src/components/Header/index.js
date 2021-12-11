@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "./styles";
 
 export default class Header extends React.Component {
 
@@ -7,7 +8,9 @@ export default class Header extends React.Component {
     const { title } = this.props;
 
     return (
-      <h1>{title}</h1>
+      <Container>
+        <h1>{title}</h1>
+      </Container>
     )
   }
 }

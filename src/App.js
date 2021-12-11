@@ -3,7 +3,8 @@ import React from "react"
 import axios from "axios"
 import Header from "./components/Header";
 import List from "./components/List";
-import Pesquisa from "./components";
+import Pesquisa from "./components/Pesquisa";
+import { GlobalStyle } from "./styles/global";
 
 export default class App extends React.Component {
 
@@ -19,8 +20,6 @@ export default class App extends React.Component {
   filterList(value) {
     this.fetchData(value)
   }
-
-
 
   async fetchData(value) {
     axios.get('https://hn.algolia.com/api/v1/search?query=' + value)
@@ -39,9 +38,11 @@ export default class App extends React.Component {
     const { leituras } = this.state
     return (
       <>
+
         <Header title="modulo 1 - exercio 2" />
         <Pesquisa callback={this.filterList}></Pesquisa>
         <List leituras={leituras}></List>
+        <GlobalStyle />
       </>
     )
   }

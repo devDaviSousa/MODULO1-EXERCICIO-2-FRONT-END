@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "./styles";
 
 export default class Pesquisa extends React.Component {
 
@@ -7,7 +8,6 @@ export default class Pesquisa extends React.Component {
     this.state = {
       pesquisa: ''
     }
-
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.quandoClicar = this.quandoClicar.bind(this);
   }
@@ -23,10 +23,12 @@ export default class Pesquisa extends React.Component {
 
   render() {
     return (
-      <form>
-        <input type="text" onChange={this.handleChangeValue} />
-        <button type="button" onClick={this.quandoClicar}>Pesquisar</button>
-      </form>
+      <Container>
+        <form>
+          <input type="text" onChange={this.handleChangeValue} />
+          <button type="button" onClick={this.quandoClicar}>Pesquisar</button>
+        </form>
+      </Container>
     )
   }
 }
