@@ -5,11 +5,11 @@ export default class Header extends React.Component {
 
 
   render() {
-    const { title } = this.props;
+
 
     return (
       <Container>
-        <h1>{title}</h1>
+        <h1>{process.env.REACT_APP_NAME}</h1>
       </Container>
     )
   }
