@@ -3,6 +3,7 @@ import React from "react"
 import axios from "axios"
 import Header from "./components/Header";
 import List from "./components/List";
+import Pesquisa from "./components";
 
 export default class App extends React.Component {
 
@@ -12,10 +13,17 @@ export default class App extends React.Component {
       leituras: [],
     }
     this.fetchData = this.fetchData.bind(this);
-
+    this.filterList = this.filterList.bind(this);
   }
-  async fetchData() {
-    axios.get('https://hn.algolia.com/api/v1/search?query=chave')
+
+  filterList(value) {
+    this.fetchData(value)
+  }
+
+
+
+  async fetchData(value) {
+    axios.get('https://hn.algolia.com/api/v1/search?query=' + value)
       .then(response => {
         const data = response.data.hits
         this.setState({ leituras: data })
@@ -32,6 +40,7 @@ export default class App extends React.Component {
     return (
       <>
         <Header title="modulo 1 - exercio 2" />
+        <Pesquisa callback={this.filterList}></Pesquisa>
         <List leituras={leituras}></List>
       </>
     )
